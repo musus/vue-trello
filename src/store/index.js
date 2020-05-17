@@ -3,21 +3,46 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  	lists: [],
-  },
-  mutations: {
-  	addList(state, payload) {
-  		state.lists.push({ title: payload.title, cards:[]})
-  	},
-  },
-  actions: {
-  	addlist(context, payload) {
-  		context.commit('addlist',payload)
+const savedLists = localStorage.getItem('trello-lists')
 
-  	},
-  },
-  getters: {
-  }
+const store = new Vuex.Store({
+	state: {
+		lists: savedLists ? JSON.parse(savedLists): [
+			{
+				title: 'Backlog',
+				cards: [
+				{ body: 'English' },
+				{ body: 'Mathematics' },
+				]
+			},
+			{
+				title: 'Todo',
+				cards: [
+					{ body: 'Science'}
+				]
+			},
+			{
+				title: 'Doing',
+				card: []
+			}
+			],
+		},
+		mutations: {
+			addList(state, payload) {
+				state.lists.push({ title: payload.title, cards:[] })
+			},
+		},
+		actions: {
+			addList(context, payload) {
+				context.commit('addList',payload)
+			},
+		},
+		getters: {
+		}
+	})
+
+store.subscribe((mutation, state) => {
+	localStorage.setItem('trello-lists', JSON.stringify(state.lists))
 })
+
+export default store
