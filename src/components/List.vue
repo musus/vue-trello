@@ -22,7 +22,7 @@
 		methods: {
 			removeList: function() {
 				if(confirm('リストを削除しますか？')){
-					this.$store.dispatch('removelist',{ listIndex: this.listIndex })
+					this.$store.dispatch('removeList',{ listIndex: this.listIndex })
 				}
 			},
 		}

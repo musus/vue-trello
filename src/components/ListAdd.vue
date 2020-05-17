@@ -42,7 +42,7 @@
 		},
 		methods: {
 			addList() {
-				this.$store.dispatch('addList', this.title)
+				this.$store.dispatch('addList', { title: this.title})
 				this.title = ''
 			},
 			startEditing() {
