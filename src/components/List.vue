@@ -4,11 +4,16 @@
 			<p class="list-title">{{ title }}</p>
 			<div class="deletelist" @click="removeList">x</div>
 		</div>
+		<card-add :listIdex="listIndex" />
 	</div>
 </template>
 
 <script>
+	import CardAdd from './CardAdd'
 	export default {
+		components: {
+			CardAdd
+		},
 		props: {
 			title: {
 				type: String,
