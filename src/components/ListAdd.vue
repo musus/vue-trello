@@ -1,11 +1,18 @@
 <template>
-	<form class="addlist" @submit.prevent="addList">
+	<form :class="classList" @submit.prevent="addList">
 		<input type="text"
-		v-model="text"
+		v-model="title"
 		class="text-input"
 		placeholder="リストを追加"
+		@focusin="startEditing"
+		@focusout="finishEditing"
+
 		>
-		<button type="submit" class="add-button">追加</button>
+		<button
+		type="submit"
+		class="add-button"
+		v-if="isEditing || titleExists">
+		追加</button>
 	</form>
 </template>
 
@@ -14,13 +21,36 @@
 		data: function() {
 			return {
 				title: '',
+				isEditing: false,
 			}
 		},
+		computed: {
+			classList() {
+				const classList = ['addList']
+
+				if (this.isEditing) {
+					classList.push('active')
+				}
+				if (this.titleExists) {
+					classList.push('addable')
+				}
+				return classList
+			},
+			titleExists() {
+				return this.title.length > 0
+			},
+		},
 		methods: {
-			addList: function() {
-				this.$store.dispatch('addList', { title: this.title})
+			addList() {
+				this.$store.dispatch('addList', this.title)
 				this.title = ''
-			}
+			},
+			startEditing() {
+				this.isEditing = true
+			},
+			finishEditing() {
+				this.isEditing = false
+			},
 		}
 	}
 </script>
