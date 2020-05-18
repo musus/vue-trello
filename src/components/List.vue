@@ -11,7 +11,7 @@
 		:listIndex="listIndex"
 		/>
 
-		<card-add :listIdex="listIndex" />
+		<card-add :listIndex="listIndex" />
 	</div>
 </template>
 

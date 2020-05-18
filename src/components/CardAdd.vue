@@ -8,9 +8,8 @@
 			@focusout="finishEditing"
 		/>
 		<button type="submit" class="add-button"
-		v-if="isEditing || bodyExists"
-		>
-			追加
+		v-if="isEditing || bodyExists">
+		追加
 		</button>
 	</form>
 </template>
@@ -20,13 +19,13 @@ export default {
 	props: {
 		listIndex: {
 			type: Number,
-			required: true,
+			required: true
 		}
 	},
 	data: function() {
 		return {
 			body: '',
-			isEditing: false,
+			isEditing: false
 		}
 	},
 	computed: {
@@ -38,7 +37,7 @@ export default {
 			if (this.bodyExists) {
 				classList.push('addable')
 			}
-			return classList
+			return classList;
 		},
 		bodyExists() {
 			return this.body.length > 0
@@ -52,7 +51,7 @@ export default {
 			this.isEditing = false
 		},
 		addCardToList: function() {
-			this.$store.dispatch('addCardToList', { body: this.body, listIndex: this.listIndex})
+			this.$store.dispatch('addCardToList', { body: this.body, listIndex: this.listIndex })
 			this.body = ''
 		}
 	}

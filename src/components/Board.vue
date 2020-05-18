@@ -23,7 +23,7 @@
 </template>
 
 <script>
-	import ListAdd from './ListAdd.vue'
+	import ListAdd from './ListAdd'
 
 	import List from './List'
 	import { mapState } from 'vuex'
