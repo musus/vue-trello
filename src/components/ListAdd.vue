@@ -6,7 +6,6 @@
 		placeholder="リストを追加"
 		@focusin="startEditing"
 		@focusout="finishEditing"
-
 		>
 		<button
 		type="submit"

@@ -5,16 +5,15 @@
 			<p class="list-counter">合計: {{ totalCardInList }}</p>
 			<div class="deletelist" @click="removeList">x</div>
 		</div>
-		<draggable>
+		<draggable group="cards" :list="cards" @end="$emit('change')">
 			<card v-for="(item, index) in cards"
 			:body="item.body"
 			:key="item.id"
 			:cardIndex="index"
 			:listIndex="listIndex"
 			/>
-
-			<card-add :listIndex="listIndex" />
 		</draggable>
+		<card-add :listIndex="listIndex" />
 	</div>
 </template>
 
